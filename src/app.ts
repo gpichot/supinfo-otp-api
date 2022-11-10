@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import cors from "cors";
 import express, {
   json,
@@ -21,7 +20,6 @@ app.use(
   })
 );
 
-const prisma = new PrismaClient();
 // Use body parser to read sent json payloads
 app.use(
   urlencoded({
@@ -56,6 +54,7 @@ app.use(function errorHandler(
     });
   }
   if (err instanceof Error) {
+    console.error(err);
     return res.status(500).json({
       message: "Internal Server Error",
     });
